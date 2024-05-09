@@ -15,7 +15,7 @@ const schema = Schema({
 },{
     strict: true,
     collection: colletionName,
-    version: false,
+    versionKey: false,
     _id: false
 })
 
