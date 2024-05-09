@@ -7,7 +7,7 @@ dotenv.config()
 import taskRouter from './src/routes/taskRoutes.js'
 
 // const db = process.env.MONGO_URI || 'mongodb://localhost:27017/task_app';
-const db = process.env.MONGO_URI 
+const db = process.env.MONGO_URI  || 'mongodb+srv://salvarsadev13:Pogo1234@task-app.gemnots.mongodb.net/?retryWrites=true&w=majority&appName=task-app'
 
 const connectDb = async () => {
     try {

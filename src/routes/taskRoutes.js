@@ -8,7 +8,7 @@ taskRouter.use(express.json())
 
 //Endpoints
 taskRouter.route('/').get(getTasks)
-taskRouter.route('/created').post(createTask)
+taskRouter.route('/create').post(createTask)
 taskRouter.route('/update/:_id').put(updateTask)
 taskRouter.route('/delete/:_id').delete(deleteTask)
 
