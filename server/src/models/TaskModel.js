@@ -1,4 +1,4 @@
-import {Schema, model} from 'mongoose'
+import {Schema, model, version} from 'mongoose'
 const colletionName = 'task'
 
 const schema = Schema({
@@ -15,6 +15,7 @@ const schema = Schema({
 },{
     strict: true,
     collection: colletionName,
+    version: false,
     _id: false
 })
 
