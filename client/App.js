@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
 
@@ -8,14 +8,14 @@ export default function App() {
 
   useEffect(() => {
     console.log('user effect')
-    fetch('http://10.2.20.113:2402/api/v1/tasks')
+    fetch('http://192.168.1.52:2402/api/v1/tasks')
     .then(res => res.json())
     .then(res => setTasks(res))
     .catch(console.error)
   }, []);
 
   async function fetchData(){
-    const response = await fetch('http://10.2.20.113:2402/api/v1/tasks');
+    const response = await fetch('http://186.121.44.227:2402/api/v1/tasks');
     const data = await response.json();
     setTasks(data);
     return data
@@ -23,7 +23,15 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>{JSON.stringify(tasks, null, 2)}</Text>
+      <SafeAreaView>
+        <FlatList 
+        data={tasks} 
+        keyExtractor={(task) => task._id}
+        renderItem={({ item }) => <Text>{item.title}</Text>}
+        ListHeaderComponent={() => <Text style={styles.title}>Para Hoy</Text>}
+        contentContainerStyle={styles.contentContainerStyle}
+        />
+      </SafeAreaView>
       <StatusBar style="auto" />
     </View>
   );
@@ -32,8 +40,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#E9E9EF',
   },
+  contentContainerStyle: {
+    padding: 15
+  },
+  title: {
+    fontWeight: "800",
+    fontSize: 28,
+    marginBottom: 15,
+    marginTop: 15
+  }
 });
