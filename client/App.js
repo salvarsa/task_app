@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import Task from './components/Task.jsx';
 
 export default function App() {
 
@@ -27,7 +28,7 @@ export default function App() {
         <FlatList 
         data={tasks} 
         keyExtractor={(task) => task._id}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => <Task {...item}/>}
         ListHeaderComponent={() => <Text style={styles.title}>Para Hoy</Text>}
         contentContainerStyle={styles.contentContainerStyle}
         />
