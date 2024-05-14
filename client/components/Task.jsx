@@ -7,22 +7,34 @@ import {
   Pressable,
 } from "react-native";
 
+// function Checkmark({ _id, completed }) {
+//   <Pressable
+//     style={[
+//       styles.checkmark,
+//       { backgroundColor: completed ? "#E0E0EF" : "#0EA5E9" },
+//     ]}
+//   ></Pressable>;
+// }
+
 function Checkmark({ _id, completed }) {
-  <Pressable
-    style={[
-      styles.checkmark,
-      { backgroundColor: completed ? "#E0E0EF" : "#0EA5E9" },
-    ]}
-  ></Pressable>;
+  return (
+    <Pressable
+      style={[
+        styles.checkmark,
+        { backgroundColor: completed ? "#E0E0EF" : "#0EA5E9" },
+      ]}
+    />
+  );
 }
 
 export default function Task({ _id, title, completed, date, createdAt }) {
   return (
     <TouchableOpacity>
-      <View>
+      <View style={styles.containerTextCheckbox}>
         <Checkmark />
         <Text style={styles.text}>{title}</Text>
       </View>
+      
     </TouchableOpacity>
   );
 }
@@ -41,9 +53,15 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: "#333",
-    alignItems: "center",
-    justifyContent: "center",
+    borderColor: '#333',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 5, 
+  },
+  containerTextCheckbox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
   },
   checkedIcon: {
     width: 14,

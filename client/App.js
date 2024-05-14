@@ -9,18 +9,12 @@ export default function App() {
 
   useEffect(() => {
     console.log('user effect')
-    fetch('http://192.168.1.52:2402/api/v1/tasks')
+    //fetch('http://192.168.1.52:2402/api/v1/tasks') //windows IP
+    fetch('http://10.2.20.113:2402/api/v1/tasks') //mac IP
     .then(res => res.json())
     .then(res => setTasks(res))
     .catch(console.error)
   }, []);
-
-  async function fetchData(){
-    const response = await fetch('http://186.121.44.227:2402/api/v1/tasks');
-    const data = await response.json();
-    setTasks(data);
-    return data
-  }
 
   return (
     <View style={styles.container}>
