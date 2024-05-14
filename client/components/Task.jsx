@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -27,14 +27,32 @@ function Checkmark({ _id, completed }) {
   );
 }
 
-export default function Task({ _id, title, completed, date, createdAt }) {
+export default function Task({ _id, title, completed, date, createdAt,deleteTask }) {
+  const [isDeleteActive, setIsDeleteActive] = useState(false)
+
+  async function deleteTask(){
+    const response = await fetch(`http://10.2.20.113:2402/api/v1/tasks/${_id}`, {
+      method: 'DELETE'
+    })
+    deleteTask(_id)
+    console.log(response.status);
+  }
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+    onLongPress={() => setIsDeleteActive(true)}
+    onPress={() => setIsDeleteActive(false)}
+    activeOpacity={0.8}
+    style={[styles.container]}
+    >
       <View style={styles.containerTextCheckbox}>
         <Checkmark />
         <Text style={styles.text}>{title}</Text>
       </View>
-      
+      {isDeleteActive && (
+        <Pressable onPress={deleteTask} style={styles.container}>
+          <Text style={{color: 'white', fontWeight: 'bold'}}>x</Text>
+        </Pressable>
+      )}
     </TouchableOpacity>
   );
 }
